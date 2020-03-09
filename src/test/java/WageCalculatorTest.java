@@ -44,6 +44,10 @@ public class WageCalculatorTest {
         assertWage(19, 20, 19, 8);
     }
 
+    @Test
+    void shouldMakeOneHourWageWorkingAfterMidnightBeforeBedtime() {
+        assertWage(0, 1, 2, 16);
+    }
 
     private void assertWage(int startHour, int endHour, int bedtime, int wage) {
         assertThat(underTest.calculateWage(startHour, endHour, bedtime)).isEqualTo(wage);
