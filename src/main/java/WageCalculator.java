@@ -12,7 +12,7 @@ public class WageCalculator {
         }
 
         if (shiftHoursAfterBedtime(endHour, bedtime)) {
-            wage = 8;
+            wage = (endHour - startHour) * 8;
         }
 
         return wage;
