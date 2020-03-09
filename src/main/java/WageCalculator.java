@@ -3,8 +3,8 @@ public class WageCalculator {
 
         determineInvalidShiftTime(startHour, endHour);
 
-        if (shiftHoursBeforeBedtime(endHour)) {
-            return 12;
+        if (shiftHoursBeforeBedtime(endHour, bedtime)) {
+            return (endHour - startHour) * 12;
         }
 
         if (shiftHoursAfterBedtime(endHour)) {
@@ -18,8 +18,8 @@ public class WageCalculator {
         return endHour == 19;
     }
 
-    private boolean shiftHoursBeforeBedtime(int endHour) {
-        return endHour == 18;
+    private boolean shiftHoursBeforeBedtime(int endHour, int bedtime) {
+        return endHour <= bedtime;
     }
 
     private void determineInvalidShiftTime(int startHour, int endHour) {

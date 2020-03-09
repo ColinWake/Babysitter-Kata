@@ -34,6 +34,7 @@ public class WageCalculatorTest {
     @Test
     void shouldMakeOneHoursWageWorkingBeforeBedtime() {
         assertWage(17, 18, 18, 12);
+        assertWage(18, 19, 19, 12);
     }
 
 
