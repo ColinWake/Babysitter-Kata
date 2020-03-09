@@ -5,7 +5,7 @@ public class WageCalculator {
 
         determineInvalidShiftTime(startHour, endHour);
 
-        if (startHour >= 0 && startHour < 4) {
+        if (shiftHoursAfterMidnight(startHour)) {
             wage = (endHour - startHour) * 16;
         } else if (shiftHoursBeforeBedtime(endHour, bedtime)) {
             wage = (endHour - startHour) * 12;
@@ -16,6 +16,10 @@ public class WageCalculator {
         }
 
         return wage;
+    }
+
+    private boolean shiftHoursAfterMidnight(int startHour) {
+        return startHour >= 0 && startHour < 4;
     }
 
     private boolean shiftHoursAfterBedtime(int endHour, int bedtime) {
