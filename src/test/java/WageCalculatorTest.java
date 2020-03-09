@@ -17,9 +17,7 @@ public class WageCalculatorTest {
 
     @Test
     void shouldReturnZeroForNoHoursWorked() {
-        int wage = underTest.calculateWage(17, 17, 17);
-
-        assertThat(wage).isEqualTo(0);
+        assertWage(17, 17, 17, 0);
     }
 
     @Test
@@ -35,14 +33,18 @@ public class WageCalculatorTest {
 
     @Test
     void shouldMakeOneHoursWageWorkingBeforeBedtime() {
-        int wage = underTest.calculateWage(17, 18, 18);
-        assertThat(wage).isEqualTo(12);
+        assertWage(17, 18, 18, 12);
     }
+
 
     @Test
     void shouldMakeOneHoursWageWorkingAfterBedtime() {
-        int wage = underTest.calculateWage(18, 19, 18);
-        assertThat(wage).isEqualTo(8);
+        assertWage(18, 19, 18, 8);
+    }
+
+
+    private void assertWage(int startHour, int endHour, int bedtime, int wage) {
+        assertThat(underTest.calculateWage(startHour, endHour, bedtime)).isEqualTo(wage);
     }
 
     private AbstractThrowableAssert<?, ? extends Throwable> assertInvalidShiftTime(int startHour, int endHour) {
