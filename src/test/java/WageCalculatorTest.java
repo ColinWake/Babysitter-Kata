@@ -33,6 +33,18 @@ public class WageCalculatorTest {
         assertInvalidShiftTime(17, 5);
     }
 
+    @Test
+    void shouldMakeOneHoursWageWorkingBeforeBedtime() {
+        int wage = underTest.calculateWage(17, 18, 18);
+        assertThat(wage).isEqualTo(12);
+    }
+
+    @Test
+    void shouldMakeOneHoursWageWorkingAfterBedtime() {
+        int wage = underTest.calculateWage(18, 19, 18);
+        assertThat(wage).isEqualTo(8);
+    }
+
     private AbstractThrowableAssert<?, ? extends Throwable> assertInvalidShiftTime(int startHour, int endHour) {
         return assertThatCode(() -> underTest.calculateWage(startHour, endHour, 17)).isInstanceOf(InvalidShiftTimeException.class).hasMessage("Invalid shift time");
     }
