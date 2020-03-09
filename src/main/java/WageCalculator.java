@@ -5,6 +5,10 @@ public class WageCalculator {
             throw new InvalidShiftTimeException("Invalid shift time");
         }
 
+        if (endHour > 4 && endHour < 17) {
+            throw new InvalidShiftTimeException("Invalid shift time");
+        }
+
         return 0;
     }
 }

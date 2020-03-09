@@ -1,3 +1,4 @@
+import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,16 @@ public class WageCalculatorTest {
 
     @Test
     void shouldThrowExceptionWhenWorkingBeforeFivePM() {
-        assertThatCode(() -> underTest.calculateWage(16, 17, 17)).isInstanceOf(InvalidShiftTimeException.class).hasMessage("Invalid shift time");
+        assertInvalidShiftTime(16, 17);
+    }
+
+
+    @Test
+    void shouldThrowExceptionWhenEndingAfterFourAM() {
+        assertInvalidShiftTime(17, 5);
+    }
+
+    private AbstractThrowableAssert<?, ? extends Throwable> assertInvalidShiftTime(int startHour, int endHour) {
+        return assertThatCode(() -> underTest.calculateWage(startHour, endHour, 17)).isInstanceOf(InvalidShiftTimeException.class).hasMessage("Invalid shift time");
     }
 }
