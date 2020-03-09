@@ -15,7 +15,7 @@ public class WageCalculatorTest {
 
     @Test
     void shouldReturnZeroForNoHoursWorked() {
-        int wage = underTest.calculateWage(5, 5, 5);
+        int wage = underTest.calculateWage(17, 17, 17);
 
         assertThat(wage).isEqualTo(0);
     }
